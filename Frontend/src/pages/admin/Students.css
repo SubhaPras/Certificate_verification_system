@@ -1,0 +1,63 @@
+.students-container {
+    padding: 24px;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    width: 280px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+  }
+  
+  .students-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+  }
+  
+  .students-table th,
+  .students-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .students-table th {
+    background: #f8fafc;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .generate-btn {
+    padding: 6px 10px;
+    background: #16a34a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .download-btn {
+    padding: 6px 10px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .pagination {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .pagination button {
+    padding: 6px 12px;
+  }
+  

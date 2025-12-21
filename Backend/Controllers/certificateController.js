@@ -105,6 +105,8 @@ export const downloadCertificate = async (req, res) => {
     const certificate = await Certificate.findOne({ certificateId });
     if (!certificate) {
       return res.status(404).json({ message: "Certificate not found" });
+      console.log("not found");
+      
     }
 
     const filePath = path.join(

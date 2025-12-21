@@ -18,27 +18,42 @@ export const getStats = async (req, res) => {
 
 export const getStudents = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = 10;
-        const skip = (page - 1) * limit;
-
-        const students = await Student.find()
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit);
-
-        const total = await Student.countDocuments();
-
-        res.json({
-            success: true,
-            students,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit)
-        });
+      const page = parseInt(req.query.page) || 1;
+      const limit = 10;
+      const skip = (page - 1) * limit;
+      const search = req.query.search || "";
+  
+      const query = search
+        ? {
+            $or: [
+              { name: { $regex: search, $options: "i" } },
+              { studentId: { $regex: search, $options: "i" } }
+            ]
+          }
+        : {};
+  
+      const students = await Student.find(query)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
+  
+      const total = await Student.countDocuments(query);
+  
+      res.json({
+        success: true,
+        students,
+        currentPage: page,
+        totalPages: Math.ceil(total / limit)
+      });
     } catch (err) {
-        res.status(500).json({ success: false, message: "Server error", error: err.message });
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        error: err.message
+      });
     }
-};
+  };
+  
 
 export const getStudentById = async (req, res) => {
     try {

@@ -18,6 +18,6 @@ const uploadExcelMiddleware = multer({
       cb(null, true);
     }
   },
-}).single("file"); // IMPORTANT: field name must be "file"
+}).single("excel"); // IMPORTANT: field name must be "file"
 
 export default uploadExcelMiddleware;
