@@ -1,0 +1,48 @@
+.verify-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .verify-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .verify-form input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .verify-form button {
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 15px;
+  }
+  
+  .certificate-card {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-align: left;
+  }
+  
+  .valid {
+    color: green;
+  }
+  
+  .download-btn {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  

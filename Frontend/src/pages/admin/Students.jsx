@@ -83,7 +83,7 @@ const Students = () => {
                                         {s.certificateId ? s.certificateId : "Not generated"}
                                     </td>
                                     <td className="actions">
-                                        {! s.certificateId && (
+                                        {s.certificateId && (
                                             <button
                                                 className="generate-btn"
                                                 onClick={() => generateCertificate(s._id)}

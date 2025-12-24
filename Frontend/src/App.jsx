@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import Login from "./pages/Login.jsx";
-// import Verify from "./pages/Verify";
+import VerifyCertificate from "./pages/VerifyCertificate.jsx";
 // import Certificate from "./pages/Certificate";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import Upload from "./pages/admin/Upload.jsx";
@@ -19,8 +19,8 @@ function App() {
 
         {/* Public */}
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/verify" element={<Verify />} />
-        <Route path="/certificate/:id" element={<Certificate />} /> */}
+        <Route path="/verify" element={<VerifyCertificate />} />
+        {/* <Route path="/certificate/:id" element={<Certificate />} /> */}
 
         {/* Admin */}
         <Route
