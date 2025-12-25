@@ -1,48 +1,147 @@
+:root {
+  --bg-main: #020617;
+  --bg-card: #02091f;
+  --bg-soft: rgba(255,255,255,0.04);
+  --border-soft: rgba(255,255,255,0.08);
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --success: #4ade80;
+  --danger: #f87171;
+}
+
+/* Page Layout */
 .verify-container {
-    max-width: 500px;
-    margin: 60px auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
+  min-height: 100vh;
+  background: linear-gradient(180deg, #020617, #02091f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px;
+  color: var(--text-main);
+}
+
+.verify-container h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Form */
+.verify-form {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.verify-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.verify-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.verify-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
+}
+
+.verify-form button {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.verify-form button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.verify-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error */
+.error {
+  color: var(--danger);
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+/* Certificate Card */
+.certificate-card {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  text-align: left;
+}
+
+.certificate-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.certificate-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.certificate-card strong {
+  color: var(--text-main);
+}
+
+/* Status */
+.valid {
+  color: var(--success);
+}
+
+/* Download Button */
+.download-btn {
+  margin-top: 16px;
+  padding: 10px 14px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-soft);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.download-btn:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
   .verify-form {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
   }
-  
-  .verify-form input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
+
   .verify-form button {
-    padding: 10px 16px;
-    cursor: pointer;
-  }
-  
-  .error {
-    color: red;
-    margin-top: 15px;
-  }
-  
-  .certificate-card {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    text-align: left;
-  }
-  
-  .valid {
-    color: green;
-  }
-  
-  .download-btn {
-    margin-top: 15px;
-    padding: 10px;
     width: 100%;
-    cursor: pointer;
   }
-  
+}

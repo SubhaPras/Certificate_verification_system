@@ -1,60 +1,165 @@
+/* Theme */
+:root {
+  --bg-main: #020617;
+  --bg-soft: rgba(255,255,255,0.05);
+  --border-soft: rgba(255,255,255,0.08);
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+}
+
+/* Navbar Base */
 .navbar {
-    height: 64px;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #0f172a;
-    color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-container {
+  max-width: 1280px;
+  height: 64px;
+  padding: 0 24px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+}
+
+/* Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-links a {
+  position: relative;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 4px;
+  transition: color .25s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* Active Link (unique style) */
+.nav-links a.active {
+  color: white;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #60a5fa);
+  border-radius: 99px;
+  animation: slideIn .3s ease;
+}
+
+@keyframes slideIn {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Buttons */
+.login-btn {
+  padding: 7px 50px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white !important;
+  font-weight: 500;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.login-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.logout-btn {
+  padding: 7px 16px;
+  border-radius: 10px;
+  background: #dc2626;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+/* Mobile Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  margin: 5px 0;
+  border-radius: 2px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
   }
-  
-  .logo {
-    font-size: 20px;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .nav-right {
-    display: flex;
-    align-items: center;
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-main);
+    flex-direction: column;
+    padding: 18px 24px;
     gap: 16px;
+    display: none;
+    animation: dropdown .25s ease;
+    border-bottom: 1px solid var(--border-soft);
   }
-  
-  .nav-right a {
-    color: #e5e7eb;
-    text-decoration: none;
-    font-size: 15px;
+
+  .nav-links.open {
+    display: flex;
   }
-  
-  .nav-right a:hover {
-    color: #fff;
-  }
-  
+
+  .nav-links a,
+  .logout-btn,
   .login-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    background: #2563eb;
-    color: #fff !important;
+    width: 100%;
+    text-align: left;
   }
-  
-  .logout-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    background: #dc2626;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+
+  @keyframes dropdown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  
-  .logout-btn:hover {
-    opacity: 0.9;
-  }
-  
-  /* Mobile */
-  @media (max-width: 768px) {
-    .nav-right {
-      gap: 10px;
-    }
-  }
-  
+}

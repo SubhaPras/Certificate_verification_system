@@ -13,7 +13,7 @@ const AdminDashboard = () => {
       try {
         const [statsRes, studentsRes] = await Promise.all([
           api.get("/admin/stats"),
-          api.get("/admin/students?limit=5")
+          api.get("/admin/students?limit=5"),
         ]);
 
         setStats(statsRes.data);
@@ -38,48 +38,57 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
+      <div className="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <p className="dashboard-subtitle">Overview & recent activity</p>
+      </div>
 
-      {/* Stats Cards */}
       <div className="stats-grid">
-        <div className="stat-card">
+        <div className="stat-card accent-blue">
           <p>Total Students</p>
           <h3>{stats.totalStudents}</h3>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card accent-green">
           <p>Total Certificates</p>
           <h3>{stats.totalCertificates}</h3>
         </div>
       </div>
 
-      {/* Recent Students */}
       <div className="recent-section">
         <h3>Recent Students</h3>
 
         {students.length === 0 ? (
-          <p>No students found</p>
+          <p className="empty-text">No students found</p>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Domain</th>
-                <th>Certificate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students?.map((s) => (
-                <tr key={s._id}>
-                  <td>{s.studentId}</td>
-                  <td>{s.name}</td>
-                  <td>{s.domain}</td>
-                  <td>{s.certificateId || "Not generated"}</td>
+          <div className="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Name</th>
+                  <th>Domain</th>
+                  <th>Certificate</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {students.map((s) => (
+                  <tr key={s._id}>
+                    <td>{s.studentId}</td>
+                    <td>{s.name}</td>
+                    <td>{s.domain}</td>
+                    <td>
+                      {s.certificateId ? (
+                        <span className="status success">Generated</span>
+                      ) : (
+                        <span className="status pending">Pending</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

@@ -8,6 +8,7 @@ import Upload from "./pages/admin/Upload.jsx";
 import Students from "./pages/admin/Students.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
 import Navbar from "./components/Navbar.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Routes>
 
         {/* Public */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<VerifyCertificate />} />
         {/* <Route path="/certificate/:id" element={<Certificate />} /> */}
@@ -33,7 +35,7 @@ function App() {
         />
 
         <Route
-          path="/admin/upload"
+          path="/upload"
           element={
             <ProtectedRoute>
               <Upload />
@@ -42,7 +44,7 @@ function App() {
         />
 
         <Route
-          path="/admin/students"
+          path="/students"
           element={
             <ProtectedRoute>
               <Students />

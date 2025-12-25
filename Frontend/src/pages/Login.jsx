@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,14 +19,14 @@ const Login = () => {
 
     try {
       const res = await api.post("/auth/login", { email, password });
-      if(res.data.success){
-        toast.success("login Success!")
+      if (res.data.success) {
+        toast.success("Login successful");
         localStorage.setItem("token", res.data.token);
         navigate("/admin");
       }
     } catch (err) {
       setError("Invalid email or password");
-      toast.error(err.message)
+      toast.error("Login failed");
     } finally {
       setLoading(false);
     }
@@ -35,26 +36,38 @@ const Login = () => {
     <div className="login-container">
       <form className="login-card" onSubmit={handleSubmit}>
         <h2>Admin Login</h2>
+        <p className="subtitle">Sign in to manage certificates</p>
 
         {error && <p className="error">{error}</p>}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="input-group">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="input-group password-group">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="button"
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
 
-        <button type="submit" disabled={loading}>
+        <button className="login-btn" type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
